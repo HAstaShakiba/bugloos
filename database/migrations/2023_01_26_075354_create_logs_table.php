@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('protocol');
             $table->string('method');
             $table->string('route');
-            $table->string('status');
+            $table->unsignedSmallInteger('status');
             $table->dateTime('called_at');
 
             $table->timestamps();
