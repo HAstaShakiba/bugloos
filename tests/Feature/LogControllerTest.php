@@ -6,13 +6,19 @@ use App\Models\Log;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Carbon;
 use Tests\TestCase;
 
 class LogControllerTest extends TestCase
 {
     use RefreshDatabase;
     use WithFaker;
+
+    public function test_unatenticated_user_cannot_see_count_logs()
+    {
+        $response = $this->getJson(route('logs'));
+
+        $response->assertUnauthorized();
+    }
 
     public function test_user_can_see_zero_count_logs()
     {
